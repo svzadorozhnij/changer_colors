@@ -17,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     Future.microtask(() async {
       await context.read<LocalizationProvider>().init();
-      await NavigationService().push(const HomePage());
+      await NavigationService().pushAndRemoveUntil(const HomePage());
     });
     super.initState();
   }

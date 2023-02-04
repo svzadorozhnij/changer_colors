@@ -11,25 +11,22 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Consumer<ColorsProvider>(
-        builder: (_, ColorsProvider colorsProvider, __) {
-          return GestureDetector(
-            onTap: colorsProvider.getNewColors,
-            child: AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle(
-                systemNavigationBarColor: colorsProvider.backgroundColor,
-                statusBarColor: colorsProvider.backgroundColor,
-              ),
-              child: Scaffold(
-                backgroundColor: colorsProvider.backgroundColor,
-                body: _body(context: context, colorsProvider: colorsProvider),
-              ),
+    return Consumer<ColorsProvider>(
+      builder: (_, ColorsProvider colorsProvider, __) {
+        return GestureDetector(
+          onTap: colorsProvider.getNewColors,
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+              systemNavigationBarColor: colorsProvider.backgroundColor,
+              statusBarColor: colorsProvider.backgroundColor,
             ),
-          );
-        },
-      ),
+            child: Scaffold(
+              backgroundColor: colorsProvider.backgroundColor,
+              body: _body(context: context, colorsProvider: colorsProvider),
+            ),
+          ),
+        );
+      },
     );
   }
 
